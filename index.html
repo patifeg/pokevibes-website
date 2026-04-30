@@ -49,9 +49,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(237,225,202,.
 .btn-outline{display:inline-block;border:2px solid var(--dark-teal);color:var(--dark-teal);font-family:var(--font-display);font-weight:700;padding:1rem 2rem;border-radius:999px;font-size:1.1rem;transition:all .2s;background:none;cursor:pointer}
 .btn-outline:hover{background:var(--dark-teal);color:#fff}
 /* PEDIDO DROPDOWN */
-.pedido-dropdown{position:relative;display:inline-block}
-.pedido-menu{display:none;position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%);background:var(--sand);border-radius:1rem;padding:1rem;box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:100;flex-direction:row;gap:1rem;min-width:280px;justify-content:center}
+.pedido-backdrop{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999998;display:none}
+.pedido-menu{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--sand);border-radius:1rem;padding:1rem;box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:999999;flex-direction:row;gap:1rem;min-width:280px;justify-content:center}
 .pedido-menu.open{display:flex}
+.pedido-backdrop.open{display:block}
 .pedido-item{display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:1rem;background:#fff;border:2px solid var(--coral);transition:all .2s}
 .pedido-item:hover{background:var(--coral);transform:scale(1.05)}
 .pedido-logo{width:70%;height:70%;object-fit:contain;display:flex;align-items:center;justify-content:center}
@@ -148,7 +149,6 @@ footer{background:var(--sand);padding:3rem 0}
   .etapas-grid{grid-template-columns:1fr}
   .extras-grid{grid-template-columns:1fr}
   .aloha-badge{display:none}
-  .pedido-menu{flex-direction:column;min-width:100px}
   .pedido-item{width:70px;height:70px}
 }
 </style>
@@ -191,20 +191,7 @@ footer{background:var(--sand);padding:3rem 0}
         <p>Bowls frescos, ingredientes selecionados e muito sabor havaiano. Monte o POKE do seu jeito!</p>
         <div class="hero-buttons">
           <a href="#cardapio" class="btn-coral">Ver Cardápio</a>
-          <div class="pedido-dropdown">
-            <button class="btn-outline" onclick="togglePedidoMenu()">Peça Agora</button>
-            <div class="pedido-menu" id="pedidoMenu">
-              <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/poke-vibes-vila-gomes-cardim/e0d7b6f3-667a-4e61-a61a-90500e8cf381?UTM_Medium=share" target="_blank" rel="noopener noreferrer" class="pedido-item">
-                <img src="assets/ifood-logo.png" alt="Ifood" class="pedido-logo"/>
-              </a>
-              <a href="https://oia.99app.com/dlp9/Fuzu1s?share_media=WHATSAPP" target="_blank" rel="noopener noreferrer" class="pedido-item">
-                <img src="assets/99food-logo.png" alt="Ifood" class="pedido-logo"/>
-              </a>
-              <a href="https://url-eu.mykeeta.com/sT4E1Eoz" target="_blank" rel="noopener noreferrer" class="pedido-item">
-                <img src="assets/keeta-logo.png" alt="Ifood" class="pedido-logo"/>
-              </a>
-            </div>
-          </div>
+          <button class="btn-outline" onclick="togglePedidoMenu()">Peça Agora</button>
         </div>
       </div>
       <div class="hero-img">
@@ -218,6 +205,20 @@ footer{background:var(--sand);padding:3rem 0}
     </svg>
   </div>
 </section>
+
+<!-- PEDIDO MENU MODAL -->
+<div class="pedido-backdrop" id="pedidoBackdrop" onclick="togglePedidoMenu()"></div>
+<div class="pedido-menu" id="pedidoMenu">
+  <a href="https://www.ifood.com.br/delivery/sao-paulo-sp/poke-vibes-vila-gomes-cardim/e0d7b6f3-667a-4e61-a61a-90500e8cf381?UTM_Medium=share" target="_blank" rel="noopener noreferrer" class="pedido-item">
+    <img src="assets/ifood-logo.png" alt="Ifood" class="pedido-logo"/>
+  </a>
+  <a href="https://oia.99app.com/dlp9/Fuzu1s?share_media=WHATSAPP" target="_blank" rel="noopener noreferrer" class="pedido-item">
+    <img src="assets/99food-logo.png" alt="Ifood" class="pedido-logo"/>
+  </a>
+  <a href="https://url-eu.mykeeta.com/sT4E1Eoz" target="_blank" rel="noopener noreferrer" class="pedido-item">
+    <img src="assets/keeta-logo.png" alt="Ifood" class="pedido-logo"/>
+  </a>
+</div>
 
 <!-- QUEM SOMOS -->
 <section id="quem-somos" class="section bg-sand">
@@ -375,14 +376,19 @@ function closeMenu(){document.getElementById('mobileMenu').classList.remove('ope
 // Pedido dropdown
 function togglePedidoMenu(){
   var menu=document.getElementById('pedidoMenu');
+  var backdrop=document.getElementById('pedidoBackdrop');
   menu.classList.toggle('open');
+  backdrop.classList.toggle('open');
 }
 
 // Fechar dropdown ao clicar fora
 document.addEventListener('click',function(e){
-  var dropdown=document.querySelector('.pedido-dropdown');
-  if(!dropdown.contains(e.target)){
-    document.getElementById('pedidoMenu').classList.remove('open');
+  var menu=document.getElementById('pedidoMenu');
+  var backdrop=document.getElementById('pedidoBackdrop');
+  var button=document.querySelector('button[onclick="togglePedidoMenu()"]');
+  if(!menu.contains(e.target) && !button.contains(e.target)){
+    menu.classList.remove('open');
+    backdrop.classList.remove('open');
   }
 });
 </script>
