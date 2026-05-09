@@ -111,7 +111,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(237,225,202,.
 
 /* NOSSA LOJA */
 .loja-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.loja-grid img{border-radius:1.5rem;box-shadow:0 20px 40px rgba(0,0,0,.1);width:100%}
+.loja-grid img,.loja-grid video{border-radius:1.5rem;box-shadow:0 20px 40px rgba(0,0,0,.1);width:100%;display:block;height:auto}
 .loja-info{display:flex;flex-direction:column;gap:2rem}
 .info-box{background:var(--primary);border-radius:1rem;padding:1.5rem}
 .info-box h3{font-family:var(--font-display);font-weight:700;color:var(--dark-teal);margin-bottom:.75rem}
@@ -234,7 +234,7 @@ footer{background:var(--sand);padding:3rem 0}
         <p>O <strong class="coral">Poke Vibes</strong> nasceu da paixão pela culinária havaiana e pelo desejo de trazer bowls frescos, saudáveis e diferenciados para São Paulo.</p>
         <p>Acreditamos que comer bem pode ser prático, delicioso e exclusivo. Por isso, oferecemos a liberdade de montar o seu poke do seu jeito.</p>
         <p>Cada ingrediente é selecionado com carinho para garantir a melhor experiência. Com proteínas premium, bases variadas e molhos exclusivos criados pela nossa equipe.</p>
-        <p>Nosso lema é simples: <strong class="teal">Good Vibes. Great Poke.</strong> 🤙</p>
+        <p><strong class="teal">Poke Vibes. O sabor que combina com a sua vibe.</strong> 🤙</p>
       </div>
     </div>
   </div>
@@ -314,7 +314,9 @@ footer{background:var(--sand);padding:3rem 0}
       <p>Um espaço pensado para você curtir sua refeição com conforto e boas vibes. Venha nos visitar!</p>
     </div>
     <div class="loja-grid">
-      <img src="assets/loja.png" alt="Interior do restaurante Poke Vibes"/>
+      <video autoplay loop muted playsinline preload="auto" poster="assets/loja.png">
+        <source src="assets/loja.mp4" type="video/mp4"/>
+      </video>
       <div class="loja-info">
         <div class="info-box"><h3>📍 Localização</h3><p>Rua Azevedo Soares, 799<br/>Tatuapé - São Paulo - SP</p></div>
         <div class="info-box"><h3>🕐 Horário de Funcionamento</h3><p>Segunda a Sexta: 12h às 21h<br/>Sábados e Domingos: 12h às 21h</p></div>
@@ -333,10 +335,10 @@ footer{background:var(--sand);padding:3rem 0}
       <p>Fale conosco! Estamos sempre prontos para te atender.</p>
     </div>
     <div class="contato-grid">
-      <a href="https://wa.me/551126741791" target="_blank" rel="noopener noreferrer" class="contato-card">
+      <a href="https://wa.me/5511947705032" target="_blank" rel="noopener noreferrer" class="contato-card">
         <div class="emoji">📱</div>
         <h3>WhatsApp</h3>
-        <p>(11) 2674-1791</p>
+        <p>(11) 94770-5032</p>
       </a>
       <a href="https://instagram.com/PokeVibesBR" target="_blank" rel="noopener noreferrer" class="contato-card">
         <div class="emoji">📸</div>
@@ -359,10 +361,10 @@ footer{background:var(--sand);padding:3rem 0}
 <footer>
   <div class="container footer-inner">
     <h3>POKE VIBES</h3>
-    <p class="slogan">Good Vibes. Great Poke. 🤙</p>
+    <p class="slogan">O sabor que combina com a sua vibe. 🤙</p>
     <div class="footer-links">
       <a href="https://instagram.com/PokeVibesBR" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://wa.me/551126741791" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href="https://wa.me/5511947705032" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
     <p class="footer-copy">&copy; 2026 Poke Vibes. Todos os direitos reservados.</p>
   </div>
